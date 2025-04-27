@@ -1,0 +1,62 @@
+<!--
+<view class = "searchview" style="background-color: rgb(212, 211, 211);">
+  <input class="search" type="text" style="background-color: white;" placeholder="输入儿童姓名进行搜索" placeholder-class="place" bindinput="search"/>
+</view>
+-->
+
+<view class = "child_list">
+  <view class = "child_card" wx:for="{{child_list}}" wx:key="index" bind:tap="toDetail" data-location="{{item._id}}">
+  <view class = '_info'>儿童号：{{item._id}}</view>
+  <view class = "image_view">
+  <image class = "image" src="cloud://test-9gtawg6paf1c6ec1.7465-test-9gtawg6paf1c6ec1-1329830728/image/兵团口腔医院儿牙科.png" mode="aspectFit"></image>
+  </view>
+  <view class = 'card_info'>儿童姓名：{{item.child_name}}</view>
+  <view class = 'card_info'>儿童性别：{{item.child_Gender}}</view>
+  <view class = 'card_info'>儿童年龄：{{item.child_age}}</view>
+  <view class = 'card_info'>独生情况：{{item.only_child}}</view>
+  <view class = 'card_info'>婚生情况：{{item.status_child}}</view>
+  </view>
+</view>
+
+<view class="update" bindtap="update" data-statu="open">
+<view class="text">点击添加受试儿童</view>
+</view>
+<!--弹出框-->
+<view class="drawer_screen" bindtap="update" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<!--content-->
+<!--使用animation属性指定需要执行的动画-->
+<view class="animation_position">
+  <view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+    <!--drawer content-->
+    <view class="drawer_title">填写受试儿童信息</view>
+    <view class = "contant_view">
+    <view class="contant" style="color: rgb(255, 0, 0);">请按实际情况问诊并填写下述信息以保证本次科研数据收集正确，最后点击“扫码完成信息添加并关闭”按钮完成录入</view>
+    </view>
+    <view class="drawer_content">
+      <view class="grid">
+        <label class="title col-0">儿童姓名:</label>
+        <input class="input_base input_h30 col-1" bindblur="name" placeholder="请输入受试儿童姓名"></input>
+      </view>
+      <view class="grid">
+        <label class="title col-0">儿童年龄:</label>
+        <input class="input_base input_h30 col-1" bindblur="phone" placeholder="请输入受试儿童年龄"></input>
+      </view>
+      <view class="grid">
+        <label class="title col-0">儿童性别:</label>
+        <input class="input_base input_h30 col-1" bindblur="product" placeholder="请输入受试儿童性别"></input>
+      </view>
+      <view class="grid">
+        <label class="title col-0">儿童情况:</label>
+        <input class="input_base input_h30 col-1" bindblur="type" placeholder="请问诊受试儿童是否为婚生子女"></input>
+      </view>
+      <view class="bottom grid">
+        <label class="title col-0">独生情况:</label>
+        <input class="input_base input_h30 col-1" bindblur="address" placeholder="请问诊受试儿童是否为独生子女"></input>
+      </view>
+    </view>
+    <view class="btn_ok" bindtap="scanCode" data-statu="close">扫码完成信息添加</view>
+    <view class="btn_ok" bindtap="update" data-statu="close">关闭</view>
+  </view>
+</view>
+
+<view class="footer"></view>

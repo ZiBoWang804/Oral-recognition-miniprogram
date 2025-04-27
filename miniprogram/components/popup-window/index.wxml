@@ -1,0 +1,7 @@
+<!-- popup.wxml -->
+<view class="popup-container" wx:if="{{isShowPopup}}">
+  <view class="popup-main">
+    <text>这是弹窗内容</text>
+    <button bindtap="closePopup">关闭弹窗</button>
+  </view>
+</view>

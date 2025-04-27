@@ -1,0 +1,39 @@
+<view class="container">
+  <!-- 儿童列表 -->
+  <scroll-view class="child-list" scroll-y>
+    <block wx:for="{{childrenList}}" wx:key="_id">
+      <view class="child-card">
+        <!-- 基本信息（可点击区域） -->
+        <view class="child-info" bindtap="navigateToDetail" data-id="{{item._id}}">
+          <image class="child-avatar" src="{{item.avatar || '/images/child-default.png'}}"></image>
+          <view class="child-details">
+            <text class="child-name">{{item.name}}</text>
+            <text class="child-meta">{{item.age}}岁 • {{item.gender}} • ID: {{item._id.substring(0,8)}}</text>
+          </view>
+          <icon type="arrowright" size="16"></icon>
+        </view>
+        
+        <!-- 二维码生成按钮 -->
+        <button class="qrcode-btn" bindtap="generateQRCode" data-id="{{item._id}}">
+          <image src="/icons/qrcode-icon.png" mode="aspectFit"></image>
+          生成二维码
+        </button>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 悬浮添加按钮 -->
+  <view class="floating-btn" bindtap="navigateToAdd">
+    <image src="/icons/add.png" mode="aspectFit"></image>
+    <text>添加儿童</text>
+  </view>
+
+  <!-- 二维码弹窗 -->
+  <view class="qrcode-modal" wx:if="{{showQRCode}}">
+    <view class="modal-content">
+      <image class="qrcode-image" src="{{qrcodeImage}}"></image>
+      <text class="qrcode-id">儿童ID: {{currentChildId}}</text>
+      <button class="close-btn" bindtap="closeQRCode">关闭</button>
+    </view>
+  </view>
+</view>

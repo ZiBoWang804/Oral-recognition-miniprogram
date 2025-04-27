@@ -1,0 +1,49 @@
+
+<view class="container">
+  <!-- 第一部分：检查项目录入 -->
+  <form class="form-section">
+    <view class="form-item">
+      <text class="form-label">蛀牙情况：</text>
+      <input class="form-input" placeholder="请输入蛀牙情况" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">缺失情况：</text>
+      <input class="form-input" placeholder="请输入缺失情况" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">充填情况：</text>
+      <input class="form-input" placeholder="请输入充填情况" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">乳切牙1：</text>
+      <input class="form-input" placeholder="请输入乳切牙1情况" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">乳切牙2：</text>
+      <input class="form-input" placeholder="请输入乳切牙2情况" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">乳切牙3：</text>
+      <input class="form-input" placeholder="请输入乳切牙3情况" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">乳切牙4：</text>
+      <input class="form-input" placeholder="请输入乳切牙4情况" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">Cariostat检测：</text>
+      <input class="form-input" placeholder="请输入Cariostat检测结果" data-field="cariostat" bindinput="handleInputChange" />
+    </view>
+  </form>
+
+  <!-- 第二部分：图片展示区域 -->
+  <view class="image-section">
+    <image class="preview-image" src="{{imageSrc}}" mode="aspectFit" />
+  </view>
+
+  <!-- 按钮区域 -->
+  <view class="button-section">
+    <button class="camera-btn" bindtap="takePhoto">拍照</button>
+    <button class="submit-btn" type="primary" bindtap="completeInspection">完成检查</button>
+  </view>
+</view>

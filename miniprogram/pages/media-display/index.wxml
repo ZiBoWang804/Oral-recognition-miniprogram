@@ -1,0 +1,13 @@
+
+<view class="container">
+  <!-- 文本展示区域 -->
+  <scroll-view class="text-area" scroll-y>
+    <text>{{contentText}}</text>
+  </scroll-view>
+
+  <!-- 媒体展示区域 -->
+  <view class="media-area">
+    <image wx:if="{{mediaType === 'image'}}" src="{{mediaUrl}}" mode="aspectFit"></image>
+    <video wx:if="{{mediaType === 'video'}}" src="{{mediaUrl}}" controls></video>
+  </view>
+</view>

@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/Home/index",
+    "pages/sign-in/index",
+    "pages/UserCenter/index",
+    "pages/List/index",
+    "pages/Detail/index",
+    "pages/Child/index",
+    "pages/Inspection/index",
+    "pages/patient-list/index",
+    "pages/child-manage/index",
+    "pages/Education/index",
+    "pages/Ed_detial/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "兵团口腔医院儿童口腔健康管理平台",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "custom": true,
+    "color": "#A2A9B0",
+    "selectedColor": "#07C160",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/List/index",
+        "text": "患者列表",
+        "iconPath": "images/icons/business.png",
+        "selectedIconPath": "images/icons/business-active.png"
+      },
+      {
+        "pagePath": "pages/Child/index",
+        "text": "儿童管理",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/Education/index",
+        "text": "宣教学习",
+        "iconPath": "images/icons/examples.png",
+        "selectedIconPath": "images/icons/examples-active.png"
+      },
+      {
+        "pagePath": "pages/UserCenter/index",
+        "text": "用户中心",
+        "iconPath": "images/icons/usercenter.png",
+        "selectedIconPath": "images/icons/usercenter-active.png"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于小程序位置接口的效果展示"
+    }
+  }
+}

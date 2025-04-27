@@ -1,0 +1,129 @@
+<!--pages/Detail/index.wxml-->
+<!--改进目标：将儿童照片展示于此处-->
+<view class="card">
+  <view class="card-title">儿童照片</view>
+  <view class="image-container">
+    <image class="hospital-image" src="cloud://test-9gtawg6paf1c6ec1.7465-test-9gtawg6paf1c6ec1-1329830728/image/兵团口腔医院儿牙科.png" mode="aspectFit"></image>
+  </view>
+</view>
+
+<view class="card">
+  <view class="card-title">基本信息</view>
+  <view class="info-row">
+    <view class="info-label">编号</view>
+    <view class="info-value">{{_id}}</view>
+  </view>
+  
+  <view class="divider"></view>
+  
+  <view class="info-row">
+    <view class="info-label">儿童姓名</view>
+    <view class="info-value">{{child.name}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">儿童年龄</view>
+    <view class="info-value">{{child.age}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">儿童性别</view>
+    <view class="info-value">{{child.gender}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">独生情况</view>
+    <view class="info-value">{{child.is_only_child}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">儿童情况</view>
+    <view class="info-value">{{child.condition}}</view>
+  </view>
+  
+  <view class="divider"></view>
+  
+  <view class="info-row">
+    <view class="info-label">监护人姓名</view>
+    <view class="info-value">{{guardian.name}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">监护人手机</view>
+    <view class="info-value">{{guardian.phone}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">监护人性别</view>
+    <view class="info-value">{{guardian.gender}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">监护人年龄</view>
+    <view class="info-value">{{guardian.age}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">收入水平</view>
+    <view class="info-value">{{guardian.income}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">学历</view>
+    <view class="info-value">{{guardian.education}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">籍贯</view>
+    <view class="info-value">{{guardian.hometown}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">家庭住址</view>
+    <view class="info-value">{{guardian.address}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">与儿童关系</view>
+    <view class="info-value">{{guardian.relationship}}</view>
+  </view>
+</view>
+
+<view class="card">
+  <view class="card-title">检查信息</view>
+  <view class="info-row">
+    <view class="info-label">蛀牙情况</view>
+    <view class="info-value">{{inspection.caries}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">缺失情况</view>
+    <view class="info-value">{{inspection.missing}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">充填情况</view>
+    <view class="info-value">{{inspection.filling}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">乳切牙1</view>
+    <view class="info-value">{{inspection.milk_tooth1}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">乳切牙2</view>
+    <view class="info-value">{{inspection.milk_tooth2}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">乳切牙3</view>
+    <view class="info-value">{{inspection.milk_tooth3}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">乳切牙4</view>
+    <view class="info-value">{{inspection.milk_tooth4}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">Cariostat检测</view>
+    <view class="info-value">{{inspection.cariostat}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">检查状态</view>
+    <view class="info-value">{{inspection.status}}</view>
+  </view>
+</view>
+
+<view class="card">
+  <view class="card-title">口腔照片</view>
+  <view class="image-container">
+    <image class="tooth-image" src="https://7465-test-9gtawg6paf1c6ec1-1329830728.tcb.qcloud.la/main_image/%E9%BB%98%E8%AE%A4%E5%9B%BE%E7%89%87.png?sign=cdcb500b12f57d1c9cbdaf1c1f466ebe&t=1735286459" mode="aspectFit"></image>
+  </view>
+</view>
+
+<view class="footer-button-container">
+  <button class="primary-button" bindtap="navigateToInspection">开始检查</button>
+</view>

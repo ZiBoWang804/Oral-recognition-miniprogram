@@ -1,0 +1,154 @@
+/* pages/sign-in/index.wxss */
+.page {
+  padding: 20rpx 0;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+}
+
+/* 表单标题 */
+.weui-cells__title {
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 28rpx;
+}
+
+/* 表单项样式 */
+.weui-cells {
+  position: relative;
+  margin-top: 8px;
+  background-color: #FFFFFF;
+  line-height: 1.41176471;
+  font-size: 32rpx;
+}
+
+.weui-cells:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+
+.weui-cell {
+  padding: 20rpx 30rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  line-height: 1.4;
+  font-size: 32rpx;
+}
+
+.weui-cell:before {
+  content: " ";
+  position: absolute;
+  left: 30rpx;
+  top: 0;
+  right: 30rpx;
+  height: 1px;
+  border-top: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+
+.weui-cell:first-child:before {
+  display: none;
+}
+
+.weui-cell_input {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.weui-label {
+  width: 180rpx;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.weui-input {
+  height: 88rpx;
+  min-height: 88rpx;
+  line-height: 88rpx;
+}
+
+.weui-select {
+  height: 88rpx;
+  min-height: 88rpx;
+  line-height: 88rpx;
+  padding-right: 30rpx;
+  position: relative;
+}
+
+.weui-select:before {
+  content: " ";
+  display: inline-block;
+  height: 12rpx;
+  width: 12rpx;
+  border-width: 4rpx 4rpx 0 0;
+  border-color: #C8C8CD;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  right: 4rpx;
+  margin-top: -8rpx;
+}
+
+/* 手机号部分 */
+.phone-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88rpx;
+  position: relative;
+  padding-right: 180rpx;  /* 为按钮预留空间 */
+}
+
+.phone-text {
+  font-size: 32rpx;
+  color: #333;
+}
+
+.btn-wrapper {
+  position: absolute;
+  right: -10rpx;  /* 稍微向右调整位置 */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mini-btn {
+  margin: 0;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  height: 60rpx;
+  min-height: 60rpx;
+}
+
+/* 按钮区域 */
+.weui-btn-area {
+  margin: 48rpx 30rpx 16rpx;
+}
+
+button[type="primary"] {
+  background-color: #07C160;
+}
+
+button[type="primary"].button-hover {
+  background-color: #06AD56;
+}
+
+/* 底部文字 */
+.page-footer {
+  padding: 30rpx;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 26rpx;
+  color: rgba(0, 0, 0, 0.5);
+  line-height: 1.4;
+}

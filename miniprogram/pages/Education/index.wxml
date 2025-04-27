@@ -1,0 +1,26 @@
+<view class="education-page">
+  <!-- 宣教内容网格 -->
+  <view class="section-title">健康宣教</view>
+  <view class="grid-container">
+    <block wx:for="{{educationItems}}" wx:key="id">
+      <view class="grid-item" bindtap="onItemTap" data-id="{{item.id}}">
+        <image class="grid-icon" src="{{item.icon}}"></image>
+        <text class="grid-text">{{item.title}}</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 宣教视频列表 -->
+  <view class="section-title">宣教视频</view>
+  <view class="video-list">
+    <block wx:for="{{videos}}" wx:key="id">
+      <view class="video-item" bindtap="playVideo" data-id="{{item.id}}">
+        <image class="video-cover" src="{{item.coverUrl}}" mode="aspectFill"></image>
+        <view class="video-info">
+          <text class="video-title">{{item.title}}</text>
+          <text class="video-duration">{{item.duration}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

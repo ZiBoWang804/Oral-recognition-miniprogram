@@ -1,0 +1,28 @@
+
+<!-- 搜索框 -->
+<view class="searchview">
+  <input class="search" 
+         type="text" 
+         placeholder="输入儿童姓名进行搜索" 
+         placeholder-class="place" 
+         bindinput="search"/>
+</view>
+
+<!-- 儿童列表 -->
+<view class="child_list">
+  <block wx:for="{{child_list}}" wx:key="index">
+    <view class="child_card" bindtap="toDetail" data-location="{{item._id}}">
+      <view class="_info">儿童号：{{item._id}}</view>
+      <view class="card_info">儿童姓名：{{item.child_name}}</view>
+      <view class="card_info">儿童性别：{{item.child_Gender}}</view>
+      <view class="card_info">儿童年龄：{{item.child_age}}</view>
+      <view class="card_info">独生情况：{{item.only_child}}</view>
+      <view class="card_info">婚生情况：{{item.status_child}}</view>
+      <view class="image_view">
+        <image class="image" 
+               src="cloud://test-9gtawg6paf1c6ec1.7465-test-9gtawg6paf1c6ec1-1329830728/image/兵团口腔医院儿牙科.png" 
+               mode="aspectFit"/>
+      </view>
+    </view>
+  </block>
+</view>

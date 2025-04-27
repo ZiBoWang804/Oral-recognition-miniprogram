@@ -1,0 +1,29 @@
+
+.container {
+  padding: 20rpx;
+}
+
+.education-item {
+  margin-bottom: 30rpx;
+  padding: 20rpx;
+  border: 1rpx solid #eee;
+  border-radius: 10rpx;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 32rpx;
+  margin-bottom: 10rpx;
+}
+
+.content {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.time {
+  font-size: 24rpx;
+  color: #999;
+  text-align: right;
+}

@@ -1,0 +1,8 @@
+
+<view class="container">
+  <view wx:for="{{educationList}}" wx:key="time" class="education-item">
+    <view class="title">{{item.title}}</view>
+    <view class="content">{{item.content}}</view>
+    <view class="time">{{item.time}}</view>
+  </view>
+</view>

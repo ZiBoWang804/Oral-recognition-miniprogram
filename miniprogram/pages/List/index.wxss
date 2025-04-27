@@ -1,0 +1,154 @@
+
+/* 微信原生风格样式 */
+page {
+  background-color: #F7F7F7;
+}
+
+/* 悬浮按钮样式 */
+.float-btn {
+  position: fixed;
+  right: 30rpx;
+  bottom: 160rpx;
+  width: auto;
+  height: 80rpx;
+  border-radius: 10rpx;
+  background-color: #07C160;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 24rpx;
+  z-index: 999;
+}
+
+.float-btn image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 12rpx;
+}
+
+.float-btn text {
+  color: #FFFFFF;
+  font-size: 28rpx;
+  white-space: nowrap;
+}
+
+.float-btn:active {
+  opacity: 0.8;
+  transform: scale(0.95);
+}
+
+/* 原有样式保持不变 */
+.addview {
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addtext {
+  font-size: 28rpx;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+}
+
+.scan {
+  font-size: 28rpx;
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  background-color: #07C160;
+  border-radius: 30rpx;
+  padding: 10rpx 20rpx;
+  color: white;
+}
+
+.child_list {
+  padding: 16rpx;
+}
+
+.child_card {
+  background-color: #FFFFFF;
+  border-radius: 8rpx;
+  margin-bottom: 16rpx;
+  padding: 20rpx;
+}
+
+.card_info, ._info {
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 1.6;
+}
+
+.image_view {
+  margin-top: 16rpx;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 4rpx;
+}
+
+.update {
+  position: fixed;
+  bottom: 32rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #07C160;
+  color: #FFFFFF;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+/* 弹窗样式 */
+.drawer_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+}
+
+.drawer_box {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  position: fixed;
+  bottom: 300rpx;
+  z-index: 1001;
+  width: 90%;
+  height: 865rpx;
+}
+
+.drawer_title {
+  margin-top: 30rpx;
+  padding: 15rpx;
+  font-size: 32rpx;
+  text-align: center;
+  font-weight: bold;
+}
+
+.drawer_content {
+  overflow-y: scroll;
+  font-size: 28rpx;
+}
+
+.btn_ok {
+  margin-top: 5%;
+  padding: 24rpx;
+  text-align: center;
+  border-top: 1rpx solid #E8E8EA;
+  color: #07C160;
+  font-size: 28rpx;
+}

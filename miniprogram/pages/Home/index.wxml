@@ -1,0 +1,23 @@
+<!--pages/home/index.wxml-->
+<view class="page">
+  <view class="logo-container">
+    <image 
+      class="logo" 
+      src="cloud://test-9gtawg6paf1c6ec1.7465-test-9gtawg6paf1c6ec1-1329830728/image/兵团口腔医院儿牙科.png" 
+      mode="aspectFit"
+      bindload="onImageLoad"
+      binderror="onImageError">
+    </image>
+    <view class="loading" wx:if="{{imageLoading}}">
+      <view class="loading-text">加载中<text class="loading-dots"></text></view>
+    </view>
+  </view>
+  <button 
+    class="weui-btn_primary" 
+    type="primary" 
+    hover-class="button-hover" 
+    hover-stay-time="100"
+    bindtap="toSignIn">
+    开始使用
+  </button>
+</view>
