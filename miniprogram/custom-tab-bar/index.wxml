@@ -2,12 +2,22 @@
   <view 
     wx:for="{{currentTabs}}"
     wx:key="index"
-    class="tab-bar-item {{selected === index ? 'active' : ''}}"
+    class="tab-bar-item {{selected === index ? 'active' : ''}} {{item.disabled ? 'disabled' : ''}}"
     bindtap="switchTab"
     data-index="{{index}}"
     data-path="{{item.pagePath}}"
+    aria-role="tab"
+    aria-selected="{{selected === index}}"
+    aria-label="{{item.text}}"
+    hover-class="tab-bar-item-hover"
+    hover-stay-time="100"
   >
-    <image class="tab-bar-icon" src="{{selected === index ? item.selectedIconPath : item.iconPath}}"></image>
+    <image 
+      class="tab-bar-icon" 
+      src="{{selected === index ? item.selectedIconPath : item.iconPath}}"
+      mode="aspectFit"
+      lazy-load="{{true}}"
+    />
     <text class="tab-bar-text">{{item.text}}</text>
   </view>
 </view>

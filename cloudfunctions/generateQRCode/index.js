@@ -1,30 +1,30 @@
 const cloud = require('wx-server-sdk')
-cloud.init()
-const qrcode = require('qrcode')
+const QRCode = require('qrcode')
+
+cloud.init({
+  env: cloud.DYNAMIC_CURRENT_ENV
+})
 
 exports.main = async (event, context) => {
   try {
-    // 生成二维码图片
-    const qrCodeData = await qrcode.toDataURL(event.text, {
-      width: event.width || 200,
-      margin: 1
-    })
+    // 获取生成二维码的参数
+    const { text, width = 200 } = event
     
-    // 上传到云存储
-    const fileStream = Buffer.from(qrCodeData.split(',')[1], 'base64')
-    const upload = await cloud.uploadFile({
-      cloudPath: `qrcodes/${Date.now()}.png`,
-      fileContent: fileStream
+    // 生成二维码并返回base64格式
+    const qrCodeDataURL = await QRCode.toDataURL(text, {
+      width: width,
+      margin: 1
     })
     
     return {
       code: 0,
-      fileID: upload.fileID
+      data: qrCodeDataURL,
+      message: '二维码生成成功'
     }
   } catch (err) {
     return {
       code: -1,
-      message: err.message
+      message: '二维码生成失败: ' + err.message
     }
   }
 }

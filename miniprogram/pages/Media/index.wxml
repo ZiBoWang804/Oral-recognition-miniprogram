@@ -1,0 +1,42 @@
+
+<view class="container">
+  <!-- 视频卡片 -->
+  <view class="media-card">
+    <view class="media-title">宣教视频</view>
+    <view wx:if="{{!loading && videoUrl}}">
+      <video 
+        id="mediaVideo"
+        src="{{videoUrl}}" 
+        controls
+        enable-play-gesture
+        show-fullscreen-btn
+        show-center-play-btn
+        object-fit="contain"
+        style="width:100%;height:420rpx"
+      ></video>
+    </view>
+    <view wx:if="{{!loading && !videoUrl}}" class="empty-tip">本宣教暂无视频内容</view>
+    <view wx:if="{{loading}}" class="loading">
+      <image src="/images/loading.gif" mode="widthFix" style="width:40rpx;height:40rpx;"></image>
+      <text class="loading-text">加载中...</text>
+    </view>
+  </view>
+
+  <!-- 文字卡片 -->
+  <view class="media-card">
+    <view class="media-title">宣教正文</view>
+    <view wx:if="{{!loading && textContent}}">
+      <text>{{textContent}}</text>
+    </view>
+    <view wx:if="{{!loading && !textContent}}" class="empty-tip">本宣教暂无文字内容</view>
+  </view>
+
+  <!-- 图片卡片 -->
+  <view class="media-card">
+    <view class="media-title">宣教图片</view>
+    <view wx:if="{{!loading && imageUrl}}">
+      <image src="{{imageUrl}}" mode="aspectFit" bindtap="previewImage"></image>
+    </view>
+    <view wx:if="{{!loading && !imageUrl}}" class="empty-tip">本宣教暂无图片内容</view>
+  </view>
+</view>

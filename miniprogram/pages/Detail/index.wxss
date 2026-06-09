@@ -41,6 +41,7 @@ page {
 .info-label {
   color: #999;
   width: 200rpx;
+  margin-right: 20rpx;
 }
 
 .info-value {
@@ -62,8 +63,8 @@ page {
 
 .tooth-image {
   width: 100%;
-  max-width: 500rpx;
-  height: auto;
+  max-width: 800rpx;
+  height: 450rpx;
   border-radius: 8rpx;
 }
 

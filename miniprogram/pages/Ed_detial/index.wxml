@@ -1,8 +1,18 @@
 
 <view class="container">
-  <view wx:for="{{educationList}}" wx:key="time" class="education-item">
-    <view class="title">{{item.title}}</view>
-    <view class="content">{{item.content}}</view>
-    <view class="time">{{item.time}}</view>
+  <!-- 暂无内容提示 -->
+  <view wx:if="{{noData}}" class="no-data">
+    <text>暂无内容</text>
   </view>
+  
+  <!-- 内容列表 -->
+  <block wx:for="{{educationList}}" wx:key="_id">
+    <view class="card" bindtap="onItemTaps" data-id="{{item._id}}" hover-class="card-hover">
+      <view class="card-header">
+        <text class="title">{{item.xjbt}}</text>
+        <text class="time">{{item.scrq}}</text>
+      </view>
+      <text class="card-content">{{item.xjjj}}</text>
+    </view>
+  </block>
 </view>

@@ -1,4 +1,47 @@
 <view class="education-page">
+  <!-- 全屏视频播放器 -->
+  <view class="video-player-container" hidden="{{!isVideoPlaying}}">
+    <view class="close-btn" bindtap="closeVideo">×</view>
+    <video 
+      id="videoPlayer"
+      class="video-player"
+      src="{{currentVideo.videoUrl}}"
+      autoplay="{{true}}"
+      show-center-play-btn="{{false}}"
+      controls="{{false}}"
+      bindload="onVideoLoad"
+      binderror="onVideoError"
+      bindtimeupdate="onVideoTimeUpdate"
+    ></video>
+    
+    <!-- 自定义控制面板 -->
+    <view class="video-controls" wx:if="{{!videoLoading}}">
+      <!-- 进度条和控制按钮容器 -->
+      <view class="progress-container">
+        <!-- 播放/暂停按钮 -->
+        <view class="play-pause-btn" bindtap="togglePlayPause">
+          <text class="control-icon">{{isPlaying ? '❚❚' : '▶'}}</text>
+        </view>
+        
+        <text class="time-text">{{currentTime ? formatTime(currentTime) : '00:00'}}</text>
+        <slider 
+          class="progress-bar"
+          min="0"
+          max="100"
+          value="{{progress}}"
+          activeColor="#09BB07"
+          backgroundColor="#EBEBEB"
+          block-size="12"
+          bindchange="onProgressChange"
+        />
+        <text class="time-text">{{duration ? formatTime(duration) : '00:00'}}</text>
+      </view>
+    </view>
+    
+    <!-- 加载遮罩 -->
+
+  </view>
+
   <!-- 宣教内容网格 -->
   <view class="section-title">健康宣教</view>
   <view class="grid-container">
@@ -11,7 +54,7 @@
   </view>
 
   <!-- 宣教视频列表 -->
-  <view class="section-title">宣教视频</view>
+  <view class="section-title">热门内容</view>
   <view class="video-list">
     <block wx:for="{{videos}}" wx:key="id">
       <view class="video-item" bindtap="playVideo" data-id="{{item.id}}">

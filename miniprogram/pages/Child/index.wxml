@@ -1,39 +1,102 @@
-<view class="container">
-  <!-- 儿童列表 -->
-  <scroll-view class="child-list" scroll-y>
-    <block wx:for="{{childrenList}}" wx:key="_id">
-      <view class="child-card">
-        <!-- 基本信息（可点击区域） -->
-        <view class="child-info" bindtap="navigateToDetail" data-id="{{item._id}}">
-          <image class="child-avatar" src="{{item.avatar || '/images/child-default.png'}}"></image>
-          <view class="child-details">
-            <text class="child-name">{{item.name}}</text>
-            <text class="child-meta">{{item.age}}岁 • {{item.gender}} • ID: {{item._id.substring(0,8)}}</text>
-          </view>
-          <icon type="arrowright" size="16"></icon>
-        </view>
-        
-        <!-- 二维码生成按钮 -->
-        <button class="qrcode-btn" bindtap="generateQRCode" data-id="{{item._id}}">
-          <image src="/icons/qrcode-icon.png" mode="aspectFit"></image>
-          生成二维码
-        </button>
-      </view>
-    </block>
-  </scroll-view>
 
-  <!-- 悬浮添加按钮 -->
-  <view class="floating-btn" bindtap="navigateToAdd">
-    <image src="/icons/add.png" mode="aspectFit"></image>
-    <text>添加儿童</text>
-  </view>
+<!-- 悬浮添加按钮 -->
+<view class="float-btn" bindtap="showAddChildModal">
+  <image src="cloud://test-9gtawg6paf1c6ec1.7465-test-9gtawg6paf1c6ec1-1329830728/图标/加.png" mode="aspectFit"></image>
+  <text>添加儿童</text>
+</view>
 
-  <!-- 二维码弹窗 -->
-  <view class="qrcode-modal" wx:if="{{showQRCode}}">
-    <view class="modal-content">
-      <image class="qrcode-image" src="{{qrcodeImage}}"></image>
-      <text class="qrcode-id">儿童ID: {{currentChildId}}</text>
-      <button class="close-btn" bindtap="closeQRCode">关闭</button>
+<!-- 添加儿童弹窗 -->
+<view class="modal" hidden="{{!showModal}}">
+  <view class="modal-content">
+    <view class="modal-header">
+      <text>添加儿童信息</text>
     </view>
+    <scroll-view scroll-y class="modal-body">
+      <view class="modal-body-content">
+        <!-- 照片选择/预览区域 -->
+        <view class="photo-section">
+          <view class="photo-preview" bindtap="previewImage" wx:if="{{tempPhotoPath}}">
+            <image src="{{tempPhotoPath}}" mode="aspectFit"></image>
+          </view>
+          <view class="photo-placeholder" bindtap="chooseImage" wx:else>
+            <image src="cloud://test-9gtawg6paf1c6ec1.7465-test-9gtawg6paf1c6ec1-1329830728/图标/加.png" mode="aspectFit" class="add-photo-icon"></image>
+            <text>点击添加照片</text>
+          </view>
+        </view>
+        <view class="input-group" style="display:flex;align-items:center;margin-bottom:24rpx">
+          <text style="width:140rpx;padding-right:16rpx">姓名：</text>
+          <input type="text" placeholder="请输入儿童姓名" value="{{child_name}}" bindinput="onNameInput" style="flex:1;padding:12rpx 0 12rpx 8rpx;border-bottom:1rpx solid rgba(0,0,0,0.1)"/>
+        </view>
+        <view class="input-group" style="display:flex;align-items:center;margin-bottom:24rpx">
+          <text style="width:140rpx;padding-right:16rpx">年龄：</text>
+          <view style="flex:1;position:relative">
+            <input 
+              type="number" 
+              placeholder="请输入0-18岁之间的年龄" 
+              value="{{child_age}}" 
+              bindinput="onAgeInput" 
+              style="width:100%;padding:12rpx 0 12rpx 8rpx;border-bottom:1rpx solid rgba(0,0,0,0.1)"
+              max="18"
+              min="0"
+            />
+          </view>
+        </view>
+        <view class="input-group" style="display:flex;align-items:center;margin-bottom:24rpx">
+          <text style="width:140rpx;padding-right:16rpx">性别：</text>
+          <picker bindchange="onGenderChange" value="{{genderArray.indexOf(child_gender)}}" range="{{genderArray}}" style="flex:1">
+            <view class="picker" style="padding:12rpx 0 12rpx 8rpx;border-bottom:1rpx solid rgba(0,0,0,0.1)">
+              {{child_gender}}
+            </view>
+          </picker>
+        </view>
+        <view class="input-group" style="display:flex;align-items:center;margin-bottom:24rpx">
+          <text style="width:140rpx;padding-right:16rpx">独生情况：</text>
+          <picker bindchange="onOnlyChange" value="{{genderArray.indexOf(only_child)}}" range="{{only_childArray}}" style="flex:1">
+            <view class="picker" style="padding:12rpx 0 12rpx 8rpx;border-bottom:1rpx solid rgba(0,0,0,0.1)">
+              {{only_child}}
+            </view>
+          </picker>
+        </view>
+        <view class="input-group" style="display:flex;align-items:center;margin-bottom:24rpx">
+          <text style="width:140rpx;padding-right:16rpx">婚生情况：</text>
+          <picker bindchange="onstatus_childChange" value="{{genderArray.indexOf(status_child)}}" range="{{status_childArray}}" style="flex:1">
+            <view class="picker" style="padding:12rpx 0 12rpx 8rpx;border-bottom:1rpx solid rgba(0,0,0,0.1)">
+              {{status_child}}
+            </view>
+          </picker>
+        </view>
+        <view class="input-group" style="display:flex;align-items:center;margin-bottom:24rpx">
+          <text style="width:140rpx;padding-right:16rpx">监护关系：</text>
+          <picker bindchange="onrelationChange" value="{{relationArray.indexOf(relation)}}" range="{{relationArray}}" style="flex:1">
+            <view class="picker" style="padding:12rpx 0 12rpx 8rpx;border-bottom:1rpx solid rgba(0,0,0,0.1)">
+              {{relation}}
+            </view>
+          </picker>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="modal-footer">
+      <button class="btn-cancel" bindtap="hideAddChildModal">取消</button>
+      <button class="btn-confirm" bindtap="confirmAddChild">确定</button>
+    </view>
+  </view>
+</view>
+
+<!-- 儿童列表 -->
+<view class="child_list">
+  <block wx:for="{{child_list}}" wx:key="index">
+    <view class="child_card" bindtap="toDetail" data-location="{{item._id}}">
+      <image class="child_photo_rect" src="{{item.phtotopath || 'cloud://test-9gtawg6paf1c6ec1.7465-test-9gtawg6paf1c6ec1-1329830728/image/兵团口腔医院儿牙科.png'}}" mode="aspectFill"></image>
+      <view class="card_info_container">
+        <view class="card_info">儿童号：{{item._id}}</view>
+        <view class="card_info">儿童姓名：{{item.child_name}}</view>
+        <view class="card_info">儿童性别：{{item.child_Gender}}</view>
+        <view class="card_info">儿童年龄：{{item.child_age}}岁</view>
+      </view>
+      <view class="card_arrow">></view>
+    </view>
+  </block>
+  <view class="empty-tip" wx:if="{{child_list.length === 0}}">
+    暂无儿童信息，点击按钮添加
   </view>
 </view>

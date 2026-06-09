@@ -1,0 +1,105 @@
+
+<!--pages/DetailNoGuardian/index.wxml-->
+<!--改进目标：将儿童照片展示于此处-->
+<view class="card">
+  <view class="card-title">儿童照片</view>
+  <view class="image-container">
+    <image class="hospital-image" src="{{child.phtotopath || 'cloud://test-9gtawg6paf1c6ec1.7465-test-9gtawg6paf1c6ec1-1329830728/image/兵团口腔医院儿牙科.png'}}" mode="aspectFit" bindtap="previewChildPhoto"></image>
+  </view>
+</view>
+
+<view class="btn-container">
+  <button class="show-code-btn" bindtap="showCheckCode">展示检查码</button>
+</view>
+
+<view class="card">
+  <view class="card-title">基本信息</view>
+  <view class="info-row">
+    <view class="info-label">编号</view>
+    <view class="info-value">{{_id}}</view>
+  </view>
+  
+  <view class="divider"></view>
+
+
+  
+  <view class="info-row">
+    <view class="info-label">儿童姓名</view>
+    <view class="info-value">{{child.name}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">儿童年龄</view>
+    <view class="info-value">{{child.age}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">儿童性别</view>
+    <view class="info-value">{{child.gender}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">独生情况</view>
+    <view class="info-value">{{child.is_only_child}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">儿童情况</view>
+    <view class="info-value">{{child.condition}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">监护关系</view>
+    <view class="info-value">{{child.relationship}}</view>
+  </view>
+</view>
+
+<view class="card">
+  <view class="card-title">检查信息</view>
+  <view class="info-row">
+    <view class="info-label">牙齿状况</view>
+    <view class="info-value">{{inspection.yczk}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">口腔状况</view>
+    <view class="info-value">{{inspection.kqzk}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">乳牙龋齿数量</view>
+    <view class="info-value">{{inspection.ryqcsl}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">恒牙龋齿数量</view>
+    <view class="info-value">{{inspection.hyqcsl}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">乳牙缺牙数量</view>
+    <view class="info-value">{{inspection.ryqysl}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">乳牙残根/残冠数量</view>
+    <view class="info-value">{{inspection.rycgcgsl}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">是否需要做间隙保持</view>
+    <view class="info-value">{{inspection.jxbc}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">待拔乳牙数量</view>
+    <view class="info-value">{{inspection.dbrysl}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">牙列情况</view>
+    <view class="info-value">{{inspection.ylqk}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">其他情况</view>
+    <view class="info-value">{{inspection.qtqk}}</view>
+  </view>
+  <view class="info-row">
+    <view class="info-label">建议</view>
+    <view class="info-value">{{inspection.bcjy}}</view>
+  </view>
+</view>
+
+<view class="card">
+  <view class="card-title">口腔照片</view>
+  <view class="image-container">
+    <image class="tooth-image" src="{{inspection.photo_url}}" mode="aspectFit"bindtap="previewToothPhoto"></image>
+  </view>
+</view>

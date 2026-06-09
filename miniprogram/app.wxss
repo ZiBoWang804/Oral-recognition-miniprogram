@@ -24,4 +24,12 @@ page {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding-bottom: calc(116rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+/* 没有tab-bar的页面可以使用这个类来移除底部padding */
+.no-tabbar {
+  padding-bottom: 0 !important;
 }

@@ -14,12 +14,10 @@ exports.main = async (event, context) => {
   const models = app.models;
   const data = await models.User.get({
     select:{
-      _id:true,
-      Name:true,
+      $master:true,
       UtoD:{
-        _id:true,
-        Dr_Sign:true,
-      },
+        $master:true 
+      }
     },
     filter:{
       where:{

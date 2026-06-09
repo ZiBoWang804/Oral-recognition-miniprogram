@@ -12,116 +12,71 @@ Page({
     child_status:'',
     child_only:'',
     total:1,
-    scanResult:''
+    scanResult:'',
+    Doctor_openID:'',
+    photoUrl:''
   },
-  name(event) { //获取儿童姓名
-    const child_name = event.detail.value
+ 
+ getDoctorID(){
+  wx.cloud.callFunction({
+    name: "getDoctorID",
+    data: {
+      Doctor_openID: wx.getStorageSync('OpenID')
+    }
+  }).then(res => {
     this.setData({
-      child_name:child_name
-    })
-  },
-  phone(event) { //获取年龄
-    const child_age = event.detail.value
-    if((child_age) > 0 || (child_age < 19)){
-      this.setData({
-        child_age:child_age
-      })
-    }else{
-      wx.showToast({
-        title: '年龄超限，请确认',
-        icon:'none'
-      })
+      Doctor_openID:res.result.data.UtoD._id,
     }
-  },
-  product(event) { //获取性别
-    const child_gender = event.detail.value
-    if (child_gender == '男'){
-      this.setData({
-        child_gender:'1'
-      })
-    }else{
-      this.setData({
-        child_gender:'2'
-      })
-    }
-  },
-  type(event) { //获取儿童情况
-    const child_status = event.detail.value
-    if (event.detail.value == '婚生子女'){
-      this.setData({
-        child_status:'1'
-      })
-    }else if(event.detail.value == '养子女'){
-      this.setData({
-        child_status:'3'
-      })
-    }else if(event.detail.value == '继子女'){
-      this.setData({
-        child_status:'4'
-      })
-    }
-  },
-  address(event) { //获取儿童独生情况
-    if (event.detail.value == '独生子女'){
-      this.setData({
-        child_only:'1'
-      })
-    }else{
-      this.setData({
-        child_only:'2'
-      })
-    }
-  },
+    )
+  })
+ },
 
-  scanCode(){
-    wx.scanCode({
-      success:(res) => {
-        wx.setStorageSync('scanResult', res.result)
-        wx.cloud.callFunction({
-          name:"checkDoctorID",
-          data:{
-            scanResult: wx.getStorageSync('scanResult')
-          }
-        }).then(res => {
-            wx.cloud.callFunction({
-              name:"getDoctorID",
-              data:{
-                Doctor_openID:wx.getStorageSync('OpenID')
-              }
-            }).then(res =>{
-              wx.cloud.callFunction({
-                name:"searchChildbyid",
-                data:{
-                  _id:scanResult
-                }
-            }).then(res =>{
-              if (res.result == -1){
-                wx.showToast({
-                  title: '未查询到儿童，请联系监护人添加该儿童',
-                  icon:'none'
-                })
-              }
-            }).then(res =>{
-              wx.setStorageSync('DoctorID', res.result.data.UtoD._id)
-              wx.cloud.callFunction({
-                name:"AssociationChildandDoctor",
-                 data:{
-                  DoctorID:wx.getStorageSync('DoctorID'),
-                  GuardianID:wx.getStorageSync('scanResult'),
-                }
-              }).then(res => {
-                if (res.result){
-                  wx.showToast({
-                    title: '添加成功',
-                    icon:'none'
-                  })
-                }
-              })
-            })
-          })
-        })
+  async scanCode() {
+    try {
+      // 扫描二维码
+      const scanRes = await wx.scanCode();
+      const scanResult = scanRes.result;
+      wx.setStorageSync('scanResult', scanResult);
+
+      // 获取医生ID
+      const doctorRes = await wx.cloud.callFunction({
+        name: "getDoctorID",
+        data: {
+          Doctor_openID: wx.getStorageSync('OpenID')
+        }
+      });
+      
+      const doctorId = doctorRes.result.data.UtoD._id;
+      wx.setStorageSync('DoctorID', doctorId);
+
+      // 关联儿童和医生
+      const associationRes = await wx.cloud.callFunction({
+        name: "AssociationChildandDoctor",
+        data: {
+          DoctorID: wx.getStorageSync('DoctorID'),
+          ChirdID: wx.getStorageSync('scanResult')
+        }
+      });
+      console.log(associationRes)
+      if (associationRes.result) {
+        wx.showToast({
+          title: '添加成功',
+          icon: 'none'
+        });
+        this.fetchData()
+      } else {
+        wx.showToast({
+          title: '添加失败',
+          icon: 'error'
+        });
       }
-    })
+    } catch (error) {
+      console.error('扫码过程出错：', error);
+      wx.showToast({
+        title: '操作失败，请重试',
+        icon: 'error'
+      });
+    }
   },
 
   update: function (e) {
@@ -129,21 +84,39 @@ Page({
     this.util(currentStatu)
   },
 
+  
   fetchData: function() {
-    wx.cloud.callFunction({
-      name: 'getChildList', // 云函数名，对应上面创建的云函数
-      success: res => {
-        var child_list_1 = []
-        console.log(res)
-        for(var i = 0;i<res.result.records.length;i++){
-          child_list_1.push(res.result.records[i])
+    return new Promise((resolve, reject) => {
+      wx.cloud.callFunction({
+        name: "getDoctorID",
+        data: {
+          Doctor_openID: wx.getStorageSync('OpenID')
+        }
+      })
+      .then(res => {
+        return wx.cloud.callFunction({
+          name: 'getChildListbyD',
+          data: {
+            DoctorID: res.result.data.UtoD._id
+          }
+        });
+      })
+      .then(res => {
+        const child_list_1 = [];
+        for(let i = 0; i < res.result.DtoC.length; i++) {
+          child_list_1.push(res.result.DtoC[i]);
         }
         this.setData({
-          child_list:child_list_1
-        })
-        console.log(this.data.child_list)
-      },
-    })
+          child_list: child_list_1
+        });
+        console.log('儿童列表已更新:', this.data.child_list);
+        resolve();
+      })
+      .catch(err => {
+        console.error('获取数据失败:', err);
+        reject(err);
+      });
+    });
   },
 
   toDetail(event){
@@ -157,7 +130,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  /**
+   * 页面加载时的生命周期函数
+   * @param {Object} options 页面跳转所带来的参数
+   * @description 页面加载时调用 fetchData 方法获取数据
+   */
   onLoad(options) {
+    //this.getDoctorID()
     this.fetchData()
   },
 
@@ -179,14 +158,31 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    wx.removeStorageSync('scanResult')
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    this.fetchData()
+      .then(() => {
+        wx.stopPullDownRefresh();
+        wx.showToast({
+          title: '刷新成功',
+          icon: 'success',
+          duration: 1000
+        });
+      })
+      .catch(err => {
+        console.error('刷新失败:', err);
+        wx.stopPullDownRefresh();
+        wx.showToast({
+          title: '刷新失败',
+          icon: 'error',
+          duration: 1000
+        });
+      });
   },
 
   /**

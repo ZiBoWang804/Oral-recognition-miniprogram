@@ -1,5 +1,191 @@
+
+page {
+  background-color: #F7F7F7;
+  padding-bottom: 140rpx;
+}
+
 .education-page {
   padding: 20rpx;
+}
+
+/* 全屏视频播放器样式 */
+.video-player-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+}
+
+/* 视频控制面板 */
+.video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8) 40%);
+  z-index: 10000;
+}
+
+/* 播放/暂停按钮 */
+.play-pause-btn {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5rpx;
+}
+
+.control-icon {
+  color: white;
+  font-size: 36rpx;
+}
+
+/* 进度条容器 */
+.progress-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}
+
+/* 进度条 */
+.progress-bar {
+  flex: 1;
+}
+
+/* 时间文本 */
+.time-text {
+  color: white;
+  font-size: 24rpx;
+  min-width: 80rpx;
+}
+
+/* 关闭按钮 */
+.close-btn {
+  position: absolute;
+  top: 40rpx;
+  right: 40rpx;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: white;
+  font-size: 40rpx;
+  z-index: 10001;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 30rpx;
+}
+
+/* 加载遮罩 */
+.loading-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10002;
+}
+
+.loading-text {
+  color: white;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 关闭按钮样式 */
+.close-btn {
+  position: fixed;
+  top: 60rpx;
+  right: 40rpx;
+  width: 60rpx;
+  height: 60rpx;
+  color: #fff;
+  font-size: 38rpx;
+  font-weight: bold;
+  text-align: center;
+  line-height: 60rpx;
+  z-index: 10000;
+  text-shadow: 0 0 10rpx rgba(0,0,0,0.5);
+}
+
+/* 加载蒙层样式 */
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-text {
+  color: #fff;
+  font-size: 32rpx;
+  margin-bottom: 30rpx;
+}
+
+/* 进度条样式 */
+progress {
+  width: 80%;
+  border-radius: 10rpx;
+}
+
+/* 视频列表样式 */
+.video-list {
+  margin-top: 30rpx;
+}
+
+.video-item {
+  margin-bottom: 30rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
+}
+
+.video-cover {
+  width: 100%;
+  height: 400rpx;
+}
+
+.video-info {
+  padding: 20rpx;
+  background-color: #fff;
+}
+
+.video-title {
+  font-size: 32rpx;
+  color: #333;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.video-duration {
+  font-size: 26rpx;
+  color: #999;
 }
 
 .section-title {
@@ -26,8 +212,8 @@
 }
 
 .grid-icon {
-  width: 80rpx;
-  height: 80rpx;
+  width: 160rpx;
+  height: 118rpx;
   margin-bottom: 10rpx;
 }
 
@@ -52,8 +238,8 @@
 }
 
 .video-cover {
-  width: 200rpx;
-  height: 120rpx;
+  width: 220rpx;
+  height: 140rpx;
 }
 
 .video-info {
@@ -77,4 +263,31 @@
 .video-duration {
   font-size: 24rpx;
   color: #999;
+}
+
+/* 全屏视频播放器样式 */
+.fullscreen-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: #000;
+}
+
+/* 关闭按钮样式 */
+.close-btn {
+  position: fixed;
+  top: 60rpx;
+  right: 40rpx;
+  width: 60rpx;
+  height: 60rpx;
+  color: #fff;
+  font-size: 38rpx;
+  font-weight: bold;
+  text-align: center;
+  line-height: 60rpx;
+  z-index: 10000;
+  text-shadow: 0 0 10rpx rgba(0,0,0,0.5);
 }

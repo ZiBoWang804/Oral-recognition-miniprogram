@@ -12,15 +12,19 @@ const app = cloudbase.init({
 
 exports.main = async (event, context) => {
   const models = app.models;
-  const {data} = await models.Child.create({
+  const {data} = await models.Child.update({
     data:{
       DtoC:{
         _id:event.DoctorID,
       },
-      GtoC:{
-        _id:event.GuardianID,
+    },
+    filter: {
+      where: {
+        _id:{
+          $eq:event.ChirdID
+          },
+        },
       },
-  }
   })
   return data
 }

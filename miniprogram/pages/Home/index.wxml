@@ -17,7 +17,7 @@
     type="primary" 
     hover-class="button-hover" 
     hover-stay-time="100"
-    bindtap="toSignIn">
+    bindtap="toSignIn" style="position: absolute; left: 199rpx; top: 1093rpx">
     开始使用
   </button>
 </view>

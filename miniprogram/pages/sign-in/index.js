@@ -13,9 +13,34 @@ Page({
     selectedbc:'',
     selectregion:['请选择籍贯'],
     setphoneNumber:'未获取',
-    code:'',
-    encryptedData:'',
-    iv:''
+    Name:'',
+    Age:'',
+    Address:'',
+    Income:''
+  },
+
+  onInInput:function (e) {
+    this.setData({
+      Income:e.detail.value
+    })
+  },
+
+  onHomeInput:function (e) {
+    this.setData({
+      Address: e.detail.value
+    })
+  },
+
+  onNameInput:function (e) {
+    this.setData({
+      Name:e.detail.value
+    })
+  },
+
+  onAgeInput:function (e) {
+    this.setData({
+      Age:e.detail.value
+    })
   },
 
   onEdbcChange:function (e) {
@@ -36,16 +61,63 @@ Page({
     })
   },
 
-  onGetPhoneNumber(e){
-    console.log(e)
-    this.setData({
-       code : e.detail.code,
-       encryptedData:e.detail.encryptedData,
-       iv:e.detail.iv
-       //此处要写一个云函数处理加密信息获取手机号并set给setphoneNumber
-    })
+  onGetPhoneNumber(e) {
+    wx.cloud.callFunction({
+      name: 'cloudbase_module',
+      data: {
+        name: 'wx_user_get_phone_number',
+        data: {
+          code: e.detail.code,
+        },
+      },
+      success: (res) => {
+        const phoneInfo = res.result?.phoneInfo;
+        this.setData({
+          setphoneNumber:phoneInfo.purePhoneNumber
+        })
+      },
+    });
   },
 
+  signIn(){
+
+    if (this.data.selectregion == '男'){
+      this.data.selectregion = '1'
+    } else if (this.data.selectregion == '女'){
+      this.data.selectregion = '2'
+    }
+    const Aera = this.data.selectregion.join()
+
+    wx.cloud.callFunction({
+      name:"createUser",
+      data:{
+        openID:wx.getStorageSync('OpenID'),
+        Gender:this.data.selectgender,
+        Name:this.data.Name,
+        Age:this.data.Age,
+        Type:'1',
+        phoneNumber:this.data.setphoneNumber,
+        Aera:Aera,
+        study:this.data.selectedbc,
+        Address:this.data.Address,
+        Income:this.data.Income
+      }
+    }).then(res =>{
+      wx.cloud.callFunction({
+        name:'queryData',
+        data:{
+          openID:wx.getStorageSync('OpenID')
+        }
+      }).then(res =>{
+        wx.setStorageSync('Type', res.result.data.Type)
+        wx.setStorageSync('Name', res.result.data.Name)
+        wx.switchTab({
+          url: './../UserCenter/index',
+        })
+      })
+    })
+  },
+  
   /**
    * 生命周期函数--监听页面加载
    */

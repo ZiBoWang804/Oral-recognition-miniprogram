@@ -1,5 +1,6 @@
 
 {
   "navigationBarTitleText": "宣教详情",
-  "usingComponents": {}
+  "usingComponents": {},
+  "enablePullDownRefresh": true
 }

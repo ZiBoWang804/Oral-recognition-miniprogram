@@ -1,6 +1,4 @@
 {
-  "usingComponents": {
-    "cloud-tip-modal": "/components/cloudTipModal/index"
-  },
+  "usingComponents": {},
   "navigationBarBackgroundColor": "#f5f5f5"
 }

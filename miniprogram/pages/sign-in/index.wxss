@@ -114,7 +114,7 @@
 
 .btn-wrapper {
   position: absolute;
-  right: -10rpx;  /* 稍微向右调整位置 */
+  right: -100rpx;  /* 固定在右侧30rpx的位置 */
   top: 50%;
   transform: translateY(-50%);
 }

@@ -1,29 +1,84 @@
 
 .container {
-  padding: 20rpx;
+  padding: 20rpx 0;
+  background-color: #f5f5f5;
 }
 
-.education-item {
-  margin-bottom: 30rpx;
-  padding: 20rpx;
-  border: 1rpx solid #eee;
-  border-radius: 10rpx;
+.card {
+  margin: 0 0 30rpx 0;
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  width: 100%;
+}
+
+.card-header {
+  padding: 36rpx 40rpx 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2rpx solid #f0f0f0;
+  flex-direction: column;
+}
+
+.card-body {
+  padding: 24rpx 40rpx 36rpx;
 }
 
 .title {
-  font-weight: bold;
-  font-size: 32rpx;
-  margin-bottom: 10rpx;
+  font-weight: 700;
+  font-size: 36rpx;
+  color: #222222;
+  line-height: 1.5;
+  flex: 1;
+  margin-bottom: 8rpx;
+  font-family: -apple-system-font, Helvetica Neue, sans-serif;
 }
 
-.content {
-  font-size: 28rpx;
-  color: #666;
-  margin-bottom: 10rpx;
+.card-content {
+  font-size: 30rpx;
+  color: #555555;
+  line-height: 1.8;
+  padding: 24rpx 40rpx;
+  font-family: -apple-system-font, Helvetica Neue, sans-serif;
 }
 
 .time {
-  font-size: 24rpx;
+  font-size: 26rpx;
+  color: #888888;
+  margin-top: 6rpx;
+  display: flex;
+  align-items: center;
+}
+
+.time::before {
+  content: "";
+  display: inline-block;
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 8rpx;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23888888"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.hover-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-effect:active {
+  opacity: 0.8;
+  background-color: #fafafa;
+}
+
+.no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200rpx;
   color: #999;
-  text-align: right;
+  font-size: 28rpx;
 }

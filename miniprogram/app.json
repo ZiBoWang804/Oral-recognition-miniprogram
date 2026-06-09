@@ -10,7 +10,10 @@
     "pages/patient-list/index",
     "pages/child-manage/index",
     "pages/Education/index",
-    "pages/Ed_detial/index"
+    "pages/Ed_detial/index",
+    "pages/DetailNoGuardian/index",
+    "pages/Media/index",
+    "pages/infochange/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

@@ -1,15 +1,45 @@
 
 Page({
   data: {
-    educationList: [
-      {title: "口腔卫生知识", content: "正确刷牙方法...", time: "2023-10-01"},
-      {title: "龋齿预防", content: "定期检查的重要性...", time: "2023-09-15"}
-    ]
+    educationList: [],
+    noData: false
   },
+  getEdlist: function(options) {
+    //传入页面名称获取List
+    let id_ = wx.getStorageSync('id')
+    const id_string = id_.toString();
+    wx.cloud.callFunction({
+      name:'getMediainfo',
+      data:{
+        ym:id_string
+      }
+    }).then(res => {
+      console.log(res)
+      const records = res.result.data.records || []
+      this.setData({
+        educationList: records,
+        noData: records.length === 0
+      })
+    })
+  },
+
   onLoad: function(options) {
-    // 页面创建时执行
+    this.getEdlist()
   },
-  onShow: function() {
-    // 页面显示时执行
-  }
+
+  onItemTaps: function(e) {
+    const id = e.currentTarget.dataset.id;
+    wx.setStorageSync('_id', id)
+    wx.navigateTo({
+      url: `./../Media/index`,
+    })
+  },
+
+  onPullDownRefresh: function() {
+    this.getEdlist()
+  },
+
+  onUnload() {
+    wx.removeStorageSync('id')
+  },
 })

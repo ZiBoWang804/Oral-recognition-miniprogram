@@ -1,58 +1,212 @@
 
 .container {
-  padding: 15px;
+  padding: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #f7f7f7;
 }
 
 .form-section {
-  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 0 32rpx;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-item {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  min-height: 96rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+
+.form-item:last-child {
+  border-bottom: none;
 }
 
 .form-label {
-  width: 120px;
-  font-size: 16px;
+  width: 180rpx;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
 }
 
 .form-input {
   flex: 1;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 8px 10px;
-  font-size: 14px;
+  font-size: 28rpx;
+  color: #333;
+  padding: 0;
+  height: 44rpx;
+  min-height: 44rpx;
+}
+
+.form-picker {
+  flex: 1;
+}
+
+.picker-inner {
+  font-size: 28rpx;
+  color: #333;
+  height: 44rpx;
+  line-height: 44rpx;
+}
+
+.button-section {
+  padding: 40rpx 32rpx 48rpx;
+  margin-top: 8rpx;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background-color: #07c160;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 44rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.submit-btn:active {
+  opacity: 0.9;
+}
+
+.submit-btn::after {
+  border: none;
 }
 
 .image-section {
-  margin-bottom: 20px;
-  border: 1px dashed #ddd;
-  border-radius: 4px;
+  position: relative;
+  margin: 32rpx 0;
+  height: 440rpx;
+  background-color: #ffffff;
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.image-section:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
 }
 
 .preview-image {
   width: 100%;
-  height: 200px;
-  background-color: #f5f5f5;
+  height: 100%;
+  position: relative;
+}
+
+.preview-image image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.preview-image:active image {
+  transform: scale(1.02);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+  width: 48rpx;
+  height: 48rpx;
+  border: 4rpx solid #f3f3f3;
+  border-top: 4rpx solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  transition: all 0.3s ease;
+}
+
+.photo-placeholder:active {
+  background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+}
+
+.add-photo-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 20rpx;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.photo-placeholder text {
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 12rpx;
+}
+
+.photo-placeholder:active .add-photo-icon {
+  transform: scale(0.9);
+  opacity: 0.9;
+}
+
+/* 添加图片加载动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.preview-image image {
+  animation: fadeIn 0.3s ease;
 }
 
 .button-section {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.camera-btn {
-  width: 48%;
-  font-size: 14px;
+  padding: 40rpx 20rpx;
 }
 
 .submit-btn {
-  width: 48%;
+  width: 100%;
+  height: 88rpx;
+  line-height: 55rpx;
+  background-color: #07c160;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 24rpx;
+}
+
+.submit-btn::after {
+  border: none;
 }

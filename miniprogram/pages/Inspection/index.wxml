@@ -3,47 +3,90 @@
   <!-- 第一部分：检查项目录入 -->
   <form class="form-section">
     <view class="form-item">
-      <text class="form-label">蛀牙情况：</text>
-      <input class="form-input" placeholder="请输入蛀牙情况" />
+      <text class="form-label">牙齿状况：</text>
+      <picker class="form-picker" range="{{yczkOptions}}" value="{{yczkIndex}}" bindchange="handleyczkChange">
+        <view class="picker-inner">{{yczkOptions[yczkIndex] || '请选择牙齿状况'}}</view>
+      </picker>
     </view>
+    
     <view class="form-item">
-      <text class="form-label">缺失情况：</text>
-      <input class="form-input" placeholder="请输入缺失情况" />
+      <text class="form-label">口腔状况：</text>
+      <picker class="form-picker" range="{{kqzkOptions}}" value="{{kqzkIndex}}" bindchange="handlekqzkChange">
+        <view class="picker-inner">{{kqzkOptions[kqzkIndex] || '请选择口腔状况'}}</view>
+      </picker>
     </view>
+
     <view class="form-item">
-      <text class="form-label">充填情况：</text>
-      <input class="form-input" placeholder="请输入充填情况" />
+      <text class="form-label">乳牙龋齿：</text>
+      <input class="form-input" placeholder="请输入乳牙龋齿数量" data-field="ryqcsl" bindinput="handleryqcslChange"/>
     </view>
+
     <view class="form-item">
-      <text class="form-label">乳切牙1：</text>
-      <input class="form-input" placeholder="请输入乳切牙1情况" />
+      <text class="form-label">恒牙龋齿：</text>
+      <input class="form-input" placeholder="请输入恒牙龋齿数量" data-field="hyqcsl" bindinput="handlehyqcslChange"/>
     </view>
+
     <view class="form-item">
-      <text class="form-label">乳切牙2：</text>
-      <input class="form-input" placeholder="请输入乳切牙2情况" />
+      <text class="form-label">乳牙缺牙：</text>
+      <input class="form-input" placeholder="请输入乳牙缺牙数量" data-field="ryqysl" bindinput="handleryqyslChange"/>
     </view>
+
     <view class="form-item">
-      <text class="form-label">乳切牙3：</text>
-      <input class="form-input" placeholder="请输入乳切牙3情况" />
+      <text class="form-label">乳牙残根/残冠：</text>
+      <input class="form-input" placeholder="请输入乳牙残根/残冠数量" data-field="rycgcgsl" bindinput="handlerycgcgslChange"/>
     </view>
+
     <view class="form-item">
-      <text class="form-label">乳切牙4：</text>
-      <input class="form-input" placeholder="请输入乳切牙4情况" />
+      <text class="form-label">是否需要做间隙保持：</text>
+      <picker class="form-picker" range="{{jxbcOptions}}" value="{{jxbcIndex}}" bindchange="handlejxbcChange">
+        <view class="picker-inner">{{jxbcOptions[jxbcIndex] || '请选择是否需要做间隙保持'}}</view>
+      </picker>
     </view>
+
     <view class="form-item">
-      <text class="form-label">Cariostat检测：</text>
-      <input class="form-input" placeholder="请输入Cariostat检测结果" data-field="cariostat" bindinput="handleInputChange" />
+      <text class="form-label">待拔乳牙数量：</text>
+      <input class="form-input" placeholder="请输入待拔乳牙数量" data-field="dbrysl" bindinput="handledbryslChange" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">牙列情况：</text>
+      <picker class="form-picker" range="{{ylqkOptions}}" value="{{ylqkIndex}}" bindchange="handleylqkChange">
+        <view class="picker-inner">{{ylqkOptions[ylqkIndex] || '请选择牙列情况'}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">其他情况：</text>
+      <picker class="form-picker" range="{{qtqkOptions}}" value="{{qtqkIndex}}" bindchange="handleqtqkChange">
+        <view class="picker-inner">{{qtqkOptions[qtqkIndex] || '请选择其他情况'}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">建议：</text>
+      <picker class="form-picker" range="{{bcjyOptions}}" value="{{bcjyIndex}}" bindchange="handlebcjyChange">
+        <view class="picker-inner">{{bcjyOptions[bcjyIndex] || '请选择保持建议'}}</view>
+      </picker>
     </view>
   </form>
-
+  
   <!-- 第二部分：图片展示区域 -->
   <view class="image-section">
-    <image class="preview-image" src="{{imageSrc}}" mode="aspectFit" />
+    <view class="preview-image" bindtap="previewImage" wx:if="{{tempPath}}">
+      <image src="{{tempPath}}" mode="aspectFit" bindload="imageLoad" binderror="imageError"></image>
+      <view class="image-overlay" wx:if="{{!imageLoaded}}">
+        <view class="loading-spinner"></view>
+      </view>
+    </view>
+    <view class="photo-placeholder" bindtap="takePhoto" wx:else>
+      <image src="/images/icons/plus.png" mode="aspectFit" class="add-photo-icon"></image>
+      <text>点击拍摄口腔照片</text>
+      <text class="photo-tip">请确保光线充足</text>
+    </view>
   </view>
-
+      
   <!-- 按钮区域 -->
   <view class="button-section">
-    <button class="camera-btn" bindtap="takePhoto">拍照</button>
-    <button class="submit-btn" type="primary" bindtap="completeInspection">完成检查</button>
+    <button class="submit-btn" bindtap="completeInspection">完成检查</button>
   </view>
 </view>

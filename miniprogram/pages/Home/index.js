@@ -21,7 +21,6 @@ Page({
       },
       success: (res) => {
         const openId = res.result?.openId;
-        console.log('获取到的openId：', openId);
         wx.cloud.callFunction({
           name:'queryData',
           data:{
@@ -35,7 +34,8 @@ Page({
             wx.navigateTo({
               url: './../sign-in/index',
             })
-          }else{
+          }
+          else{
             wx.switchTab({
               url: './../UserCenter/index',
             })
@@ -44,7 +44,22 @@ Page({
       },
     });
   },
-  
+
+/*
+  toConnect(){
+    wx.startWifi({
+      success(res){
+        wx.connectWifi({
+          SSID: 'SDYFY-free',
+          password: '',
+          maunal:true,
+          success:(res) => {console.log('连接成功')},
+          fail:(res) => {console.log('连接失败')}
+        })
+      }
+    })
+  },
+*/
   onImageLoad() {
     this.setData({
       imageLoading: false

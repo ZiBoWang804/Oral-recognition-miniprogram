@@ -9,47 +9,35 @@ Page({
     columns:["未选择","男","女"],
     gender:0,
     Age:0,
-    DrSign:'',
-    phoneNumber:''
+    phoneNumber:'',
+    Type:''
     },
 
   pickGender(e){
     this.setData({
       gender: e.detail.value 
     });
-    wx.setStorageSync('Gender', this.data.gender)
   },
 
   getName(e){
     this.setData({
       Name: e.detail.value 
     })
-    wx.setStorageSync('Name', this.data.Name)
   },
 
   getAge(e){
     this.setData({
       Age: e.detail.value 
     })
-    wx.setStorageSync('Age', this.data.Age)
-  },
-
-  getDrSign(e){
-    this.setData({
-      DrSign: e.detail.value 
-    })
-    wx.setStorageSync('DrSign', this.data.DrSign)
   },
 
   getphoneNumber_hand(event){
     this.setData({
       phoneNumber:event.detail.value
     })
-    wx.setStorageSync('phoneNumber', event.detail.value)
   },
 
   onGetPhoneNumber(e) {
-    console.log(e.detail.code); // 动态令牌
     wx.cloud.callFunction({
       name: 'cloudbase_module',
       data: {
@@ -60,7 +48,6 @@ Page({
       },
       success: (res) => {
         const phoneInfo = res.result?.phoneInfo;
-        console.log('获取到的手机号信息: ', phoneInfo);
         this.setData({
           phoneNumber:phoneInfo.purePhoneNumber
         })
@@ -74,11 +61,12 @@ Page({
       name:"createUser",
       data:{
         openID:wx.getStorageSync('OpenID'),
-        Gender:wx.getStorageSync('Gender'),
-        Name:wx.getStorageSync('Name'),
-        Age:wx.getStorageSync('Age'),
+        Gender:this.data.gender,
+        Name:this.data.Name,
+        Age:this.data.Age,
+        Type:'1',
         phoneNumber:wx.getStorageSync('phoneNumber'),
-        Dr_Sign:wx.getStorageSync('DrSign'),
+        
       }
     }).then(res =>{
       wx.setStorageSync('Type', res.result)
@@ -119,7 +107,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    wx.removeStorageSync('phoneNumber')
   },
 
   /**

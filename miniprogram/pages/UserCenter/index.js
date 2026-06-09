@@ -68,6 +68,13 @@ Page({
       const tabBar = this.getTabBar();
       tabBar.updateTabBar();
     }
+  },
+
+  // 跳转到个人信息设置页面
+  gotoInfoChange() {
+    wx.navigateTo({
+      url: '/pages/infochange/index'
+    });
   }
-  
+
 });
